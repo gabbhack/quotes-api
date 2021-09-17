@@ -16,7 +16,7 @@ async def get_users(offset: int = 0, limit: int = 10):
 
 @router.get("/{id}/", response_model=models.Author)
 async def get_user(id: str):
-    user = await models.Quotes.get(id=id)
+    user = await models.Users.get(id=id)
     return models.Author(id=user.id, name=user.name)
 
 
