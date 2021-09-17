@@ -1,7 +1,6 @@
 from typing import List
 
 from fastapi import APIRouter
-from tortoise.contrib.fastapi import HTTPNotFoundError
 
 from app import models
 
@@ -15,8 +14,14 @@ async def get_users(offset: int = 0, limit: int = 10):
     )
 
 
-@router.get("/{id}/", response_model=List[models.Quote_Pydantic])
-async def get_user(id: str, offset: int = 0, limit: int = 10):
+@router.get("/{id}/", response_model=models.Author)
+async def get_user(id: str):
+    user = await models.Quotes.get(id=id)
+    return models.Author(id=user.id, name=user.name)
+
+
+@router.get("/{id}/quotes/", response_model=List[models.Quote_Pydantic])
+async def get_user_quotes(id: str, offset: int = 0, limit: int = 10):
     quotes = (
         await models.Quotes.filter(user__id=id)
         .offset(offset)
