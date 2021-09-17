@@ -1,0 +1,21 @@
+[tool.poetry]
+name = "quotes-api"
+version = "0.1.0"
+description = ""
+authors = ["Gabben <43146729+gabbhack@users.noreply.github.com>"]
+license = "MIT"
+
+[tool.poetry.dependencies]
+python = "^3.9"
+fastapi = "^0.68.1"
+uvicorn = {extras = ["standard"], version = "^0.15.0"}
+envparse = "^0.2.0"
+tortoise-orm = {extras = ["asyncpg"], version = "^0.17.7"}
+asyncpg = "^0.24.0"
+
+
+[tool.poetry.dev-dependencies]
+black = {version = "^21.8b0", allow-prereleases = true}
+[build-system]
+requires = ["poetry-core>=1.0.0"]
+build-backend = "poetry.core.masonry.api"
