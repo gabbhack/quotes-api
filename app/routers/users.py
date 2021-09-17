@@ -16,7 +16,7 @@ async def get_users(offset: int = 0, limit: int = 10):
 
 @router.get("/{id}/", response_model=models.User_Pydantic)
 async def get_user(id: str):
-    return models.User_Pydantic.from_queryset_single(models.Users.get(id=id))
+    return await models.User_Pydantic.from_queryset_single(models.Users.get(id=id))
 
 
 @router.get("/{id}/quotes/", response_model=List[models.Quote_Pydantic])
