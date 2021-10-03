@@ -29,11 +29,8 @@ app.include_router(
     dependencies=[Depends(dependencies.is_bot)],
     include_in_schema=False,
 )
-
 register_tortoise(
     app,
-    db_url=config.DATABASE_URL,
-    modules={"models": ["app.models"]},
-    generate_schemas=True,
+    config=config.TORTOISE_ORM,
     add_exception_handlers=True,
 )

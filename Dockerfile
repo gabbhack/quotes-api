@@ -14,10 +14,15 @@ RUN set +x \
  && poetry config virtualenvs.create false \
  && rm -rf /var/lib/apt/lists/*
 
-# Add code & install dependencies
+# Install dependencies
 ADD pyproject.toml poetry.lock* /app/
 RUN poetry install -n --no-dev
+
+# Add code
 ADD ./app /app/app
+ADD aerich.ini /app
+ADD ./migrations /app/migrations
+ADD start.sh /app
 
 EXPOSE 80
-CMD [ "uvicorn", "--host=0.0.0.0", "--port=80", "app:app" ]
+CMD [ "/bin/bash", "start.sh" ]

@@ -11,6 +11,8 @@ class Author(BaseModel):
 class Users(models.Model):
     id = fields.UUIDField(pk=True)
     name = fields.CharField(max_length=129)
+    avatar = fields.TextField(default="default", null=True)
+    
     quotes: fields.ReverseRelation["Quotes"]
 
     telegram_id = fields.BigIntField(unique=True)
@@ -36,7 +38,7 @@ class QuoteIn(BaseModel):
     text: str
 
 
-Tortoise.init_models(["app.models"], "models")
+Tortoise.init_models(["app.models", "aerich.models"], "models")
 
 # Routers
 User_Pydantic = pydantic_model_creator(
