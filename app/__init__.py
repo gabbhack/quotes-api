@@ -2,7 +2,7 @@ from fastapi import FastAPI
 from fastapi.param_functions import Depends
 from tortoise.contrib.fastapi import HTTPNotFoundError, register_tortoise
 
-from app.routers import quotes, users, index
+from app.routers import quotes, users, index, images
 from app.internal import users as admin_users
 from app import dependencies, config
 
@@ -23,6 +23,7 @@ app = FastAPI(
 app.include_router(index.router)
 app.include_router(quotes.router)
 app.include_router(users.router)
+app.include_router(images.router)
 app.include_router(
     admin_users.router,
     prefix="/internal",
