@@ -18,8 +18,6 @@ async def get_users(offset: int = 0, limit: int = 10) -> List[models.User_Pydant
 async def get_user(id: str, request: Request) -> models.User_Pydantic:
     if id == "me":
         api_key = await dependencies.api_key_scheme(request)
-        if api_key is None:
-            raise HTTPException(status_code=400, detail="x-api-key header invalid")
         user = await models.Users.get_or_none(api_key=api_key)
         if user is None:
             raise HTTPException(status_code=400, detail="x-api-key header invalid")
