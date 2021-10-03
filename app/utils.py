@@ -37,4 +37,4 @@ class TelegramFiles:
 def generate_api_key() -> str:
     return secrets.token_urlsafe(128)
 
-telegram_files = TelegramFiles(config.BOT_API_KEY)
+telegram_files = TelegramFiles(config.TELEGRAM_API_KEY)
