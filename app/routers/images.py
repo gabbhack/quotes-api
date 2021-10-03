@@ -11,7 +11,7 @@ def iterdefault():
     with open("app/assets/default.jpg", "rb") as file:
         yield from file
 
-@router.get("/{id}")
+@router.get("/{id}.jpg")
 async def get_img(id: str) -> StreamingResponse:
     if id == "default":
         return StreamingResponse(iterdefault(), media_type="image/jpeg")
