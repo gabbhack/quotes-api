@@ -6,13 +6,14 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 class Author(BaseModel):
     id: str
     name: str
+    avatar: str
 
 
 class Users(models.Model):
     id = fields.UUIDField(pk=True)
     name = fields.CharField(max_length=129)
     avatar = fields.TextField(default="default", null=True)
-    
+
     quotes: fields.ReverseRelation["Quotes"]
 
     telegram_id = fields.BigIntField(unique=True)
@@ -27,7 +28,7 @@ class Quotes(models.Model):
     created_at = fields.DatetimeField(auto_now_add=True)
 
     def author(self) -> Author:
-        return Author(id=str(self.user.id), name=self.user.name)
+        return Author(id=str(self.user.id), name=self.user.name, avatar=self.avatar)
 
     class PydanticMeta:
         computed = ["author"]
