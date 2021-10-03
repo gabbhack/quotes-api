@@ -1,3 +1,4 @@
+from typing import Optional
 from pydantic.main import BaseModel
 from tortoise import fields, models, Tortoise
 from tortoise.contrib.pydantic import pydantic_model_creator
@@ -6,7 +7,7 @@ from tortoise.contrib.pydantic import pydantic_model_creator
 class Author(BaseModel):
     id: str
     name: str
-    avatar: str
+    avatar: Optional[str]
 
 
 class Users(models.Model):
