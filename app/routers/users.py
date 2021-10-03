@@ -33,7 +33,7 @@ async def get_user_quotes(id: str, offset: int = 0, limit: int = 10) -> List[mod
             id=quote_obj.id,
             text=quote_obj.text,
             created_at=quote_obj.created_at,
-            author=models.Author(id=str(quote_obj.user.id), name=quote_obj.user.name),
+            author=models.Author(id=str(quote_obj.user.id), name=quote_obj.user.name, avatar=quote_obj.user.avatar),
         )
         for quote_obj in quotes
     ]
